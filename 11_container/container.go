@@ -33,3 +33,26 @@ func maxHeight(h1, h2 int) int {
 		return h1
 	}
 }
+
+// =================
+// Time O(N)
+// Space O(1)
+func maxArea2(height []int) int {
+	front, end, max := 0, len(height)-1, 0
+
+	for end > front {
+		w := end - front
+		h := maxHeight(height[front], height[end])
+		if w*h > max {
+			max = w * h
+		}
+
+		if height[front] < height[end] {
+			front++
+		} else {
+			end--
+		}
+	}
+
+	return max
+}
